@@ -1,16 +1,35 @@
+//array for uppercase, lowercase, numbers, and special characters that users can use in their password
+var charString = {"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz", "0123456789", "~!@#$%^&*()_-=+[{]}/?!><"}
+
+//array to store the user's inputs
+var userCharacters = []
+
+// password geneartes inside
+var password = ""
 
 var generateBtn = document.querySelector("#generate")
-generateBtn.addEventListener("click", writePassword)
 
-console.log(generatePassword)
+//write password to the #password input
+function writePassword() {
+  //runs the generate password function and assigns the result to the password value
+  password = generatePassword
+  var password = document.querySelector("password")
 
-var lower = 'abcdefghijklmnopqrstuvwxyz'.split('')
-  var up = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
-  var special = ["'",' ','!','"','#','$','%','&','(',')','*','+',',','-','.','/',':',';','<','>','?','@','[',']','^','_','`','{','}','~']
-  var num = ['0','1','2','3','4','5','6','7','8','9']
-  //creating blank array for character choices to later insert into for loop for selection of characters in password
-  var characterChoices = []
-  var characterList = []
+  passwordText.value = password
+}
+
+//function that generates password and prompts character length and then passes into the write password function
+function generatePassword() {
+    var passwordLength = 0
+    //created a while loop to generate password length as well as prompt user to type in their specified length
+    while ((passwordLength < 8 || passwordLength > 128 || Number.isInteger(passwordLength === false) {
+            passwordLength = parseInt(prompt("How long do you want your password to be?..must be a number between 8 and 128")
+    }))
+}
+
+
+  
+
 //made function to generate the password
 function generatePassword (optionsObj){
     //if statement saying if user picks certain prompts to user the arrays above to select characers genned
@@ -48,7 +67,7 @@ function generatePassword (optionsObj){
 //i did with the parseInit function
 function writePassword() {
  
-  var password = document.querySelector("password")
+  
   
   
 
@@ -78,4 +97,4 @@ function writePassword() {
 
 
 // Add event listener to generate button
-;
+generateBtn.addEventListener("click", writePassword)
