@@ -1,66 +1,51 @@
+// Assignment Code
 
+//user is an employee who needs to generate a password meeting certain criteria for storing sensitive data
+//user needs a new secure password 
 
-//function to put arguments in to generate our password
-function writePassword(characterObj) {
-  //created arrays for lowercase letter, uppercase letters, and special characters to be used in the generation of password
-  
-  
-  
-  var lower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-  var upper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-  var special = ["'",' ','!','"','#','$','%','&','(',')','*','+',',','-','.','/',':',';','<','>','?','@','[',']','^','_','`','{','}','~']
-  var numeric = ['0','1','2','3','4','5','6','7','8','9']
-  //creating blank array for character choices to later insert into for loop for selection of characters in password
-  var characterChoices = []
-  //creating blank array of a list of all characters 
-  var characterList = []
- 
+//the password criteria is as follows
+//1. password must be between 8 and 128 characters
+//2a passwrod may contain lowercase letters
+//2b. password may contain uppercase letters
+//2c. password may contain special characters
+//2d. password may contain numbers 
+//3. password must contain at least one of the above character types
+//4. password must be between 8 and 128 characters
 
- //if function to generate characterList array and concating all characters into array using lower, upper, special, and numbers
-  if (characterObj.lower) {
-    characterChoices = characterChoices.concat(lower)
-  }
-  if(characterObj) {
-    characterChoices = characterChoices.concat(upper)
-  }
-  if(characterObj) {
-    characterChoices = characterChoices.concat(special)
-  }
-  if (characterObj) {
-    characterChoices = characterChoices.concat(numeric)
-  }
+//we will solve this problem by creating a password generator 
+//1. we will prompt the user to select which characters they would like in their password when
+//they press "generate" button and log it
+//1a. we will make sure the user chooses at least one character type 
+//2. we will prompt the user to type in the length of their password (between 8 and 128 characters)
+//and log that information
+//3. we will pass the selected logged selected characters (values) and selected length
+//of the password into a funtion that generates a password (object)
+//4. we will display the password(object) to the user
 
-  for (var i = 8; i <= 128; i++) {
-    var password = generatePassword(characterChoices)
+//we made arrays for the variables to input into character selection and password length functions
+//code from https://stackoverflow.com/questions/64629120/random-password-generator-using used
+var charString = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklnmopqrstuvwxyz", "0123456789", "~!@#$%^&*()-_=+"];
 
-  characterList.push(password)
-  }
-  writePassword(characterList)
+var userInput = [];
+
+//we made password into a variable so we can plug in to function to output password
+var password = ""
+
+var generateBtn = document.querySelector("#generate");
+
+//we will pass the function gnerate password into the write password function
+//we will output into #password generating our password
+function writePassword() {
+  var password = generatePassword()
+  var passwordText = document.querySelector("#password")
+
+  passwordText.value = password
+
 }
 
+//we will prompt character type and password length with function
+function generatePassword (){
+}
 
-
-
-
-
-
-// Deleted this function to start functions from scarth
-// Created function with options list to isolate variables we want in our password and create confirms and prompts to make user friendly
-function getCharacters() {
-    var addLowercase = confirm("Would you like to include lowercase letters in your password?")
-    var addUppercase = confirm("Would you like to inclue uppercase letters in your password?")
-    var addNumbers = confirm("Would you like to include numbers in your password?")
-    var addSpecialCharcters = confirm("Would you like to include special characters in your password?")
-    var passwordLength = prompt('Choose a password length: Must be at least 8 characters and no greater than 128 characters')
-    var parsedAmount = parseInt(passwordLength)
-
-    var options = {
-      lower: addLowercase,
-      upper: addUppercase,
-      numeric: addNumbers,
-      special: addSpecialCharcters,
-      amount: parsedAmount,
-    }
-
-    writePassword(options)
-  }
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
