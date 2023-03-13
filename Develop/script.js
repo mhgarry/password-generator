@@ -21,16 +21,13 @@
 //3. we will pass the selected logged selected characters (values) and selected length
 //of the password into a funtion that generates a password (object)
 //4. we will display the password(object) to the user
-/ helped me understand how to tackle this problem and write
+// helped me understand how to tackle this problem and write
 //psuedo code
 
-
+//redo with new perspective and fresh eyes
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-//make function for generate password
-function generatePassword (){
-    console.log(generatePassword)
-}
+
 
 function writePassword() {
   var password = generatePassword();
@@ -40,5 +37,15 @@ function writePassword() {
 
 }
 
+//prompt user to pick character types for password and length of password
+function generatePassword (){
+    }
+       
+        
+    
+
+
+
+//prompts to generate password
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
