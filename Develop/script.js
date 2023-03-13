@@ -24,28 +24,89 @@
 //https://www.youtube.com/watch?v=x4HUaiazDes helped me understand how to tackle this problem and write
 //psuedo code
 
-//we made arrays for the variables to input into character selection and password length functions
-//code from https://stackoverflow.com/questions/64629120/random-password-generator-using used
-var string = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""), "abcdefghijklnmopqrstuvwxyz".split(""), "0123456789".split("")
-, "~!@#$%^&*()-_=+".split("")];
-//split each string into individual strings using .split("") idea from https://stackoverflow.com/questions/24597634/how-to-generate-an-array-of-the-alphabet
-
-//made arrays using Array.from(string) to get our 4 seperate arrays
-//got arry.from function from https://www.samanthaming.com/tidbits/83-4-ways-to-convert-string-to-character-array/
-var usingArrayFrom = Array.from (string)
-console.log(usingArrayFrom)
-
-var userInput = [];
-
 //we made password into a variable so we can plug in to function to output password
-var password = ""
 
-var generateBtn = document.querySelector("#generate");
+
+
+
+//we will pass the function gnerate password into the write password fusnction
+//we will output into #password generating our password
 
 //we will pass the function gnerate password into the write password function
 //we will output into #password generating our password
+var generateBtn = document.querySelector("#generate")
 
+return password
+function writePassword(optionsObj = options) {
+    var lower = ["abcdefghijklnmopqrstuvwxyz".split("")]
+    var upper = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")]
+    var nums = ["0123456789".split("")]
+    var special = ["~!@#$%^&*()-_=+".split("")]
+    
+    
+    var userInput = []
+    var charList = []
+    
+    
+    var randomSelection = function (arr) {
+        var random = charList[Math.floor(Math.random() *
+        arr.length)] 
+    
+    if (charList.includes(random)) {
+        return randomSelection(arr)
+    }
+    return randomSelection
+    }
+    
+    //uses arrays for user choice
+    if (optionsObj.lower) {
+        userInput = userInput.concat(lower)
+    }
+    
+    if (optionsObj.upper) {
+        userInput = userInput.concat(upper)
+    }
+    
+    if (optionsObj.nums) {
+        userInput = userInput.concat(nums)
+    }
+    
+    if (optionsObj.special) {
+        userInput = userInput.concat(special)
+    //for loop for amount
+        for ( var i = 8; i < optionsObj.amount; i++) { 
+            var random = randomSelection(charList) }
+            charList.push(random)
+    }
+    generatePassword(charList)
 
+    var passwordText = document.querySelector("#password")
+    var password = passwordText
+    passwordText.value = password
 
+}
+
+function generatePassword () {
+    //confirm messages for characters
+    var addLowercase = confirm("Press OK to add lowercase letters to your password")
+    var addUppercase = confirm("Press OK to add uppercase letters to your password")
+    var addSpecialCharacters = confirm("Press OK to add special characters to your password")
+    var addNumbers = confirm("Press OK to add numbers to your function")
+    //parseInt command converts the string of numbers resulting from our array into object numerical
+    //values
+    //this will generate our password length
+    var passwordLength = prompt("Enter a number between 8 and 128 to choose the length of your password")
+    var parsedAmount = parseInt(passwordLength)
+    //options will pass the users choosen characters and password length into the WritePassword function
+    var options = {
+      lower: addLowercase,
+      upper: addUppercase,
+      special: addSpecialCharacters,
+      nums: addNumbers,
+      amount: parsedAmount
+    }
+    
+    writePassword(options)
+}
+generateBtn.addEventListener("click", writePassword) 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
