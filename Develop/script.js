@@ -21,10 +21,19 @@
 //3. we will pass the selected logged selected characters (values) and selected length
 //of the password into a funtion that generates a password (object)
 //4. we will display the password(object) to the user
+//https://www.youtube.com/watch?v=x4HUaiazDes helped me understand how to tackle this problem and write
+//psuedo code
 
 //we made arrays for the variables to input into character selection and password length functions
 //code from https://stackoverflow.com/questions/64629120/random-password-generator-using used
-var charString = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklnmopqrstuvwxyz", "0123456789", "~!@#$%^&*()-_=+"];
+var string = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""), "abcdefghijklnmopqrstuvwxyz".split(""), "0123456789".split("")
+, "~!@#$%^&*()-_=+".split("")];
+//split each string into individual strings using .split("") idea from https://stackoverflow.com/questions/24597634/how-to-generate-an-array-of-the-alphabet
+
+//made arrays using Array.from(string) to get our 4 seperate arrays
+//got arry.from function from https://www.samanthaming.com/tidbits/83-4-ways-to-convert-string-to-character-array/
+var usingArrayFrom = Array.from (string)
+console.log(usingArrayFrom)
 
 var userInput = [];
 
@@ -35,17 +44,8 @@ var generateBtn = document.querySelector("#generate");
 
 //we will pass the function gnerate password into the write password function
 //we will output into #password generating our password
-function writePassword() {
-  var password = generatePassword()
-  var passwordText = document.querySelector("#password")
 
-  passwordText.value = password
 
-}
-
-//we will prompt character type and password length with function
-function generatePassword (){
-}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
