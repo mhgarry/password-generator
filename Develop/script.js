@@ -26,9 +26,53 @@
 
 //redo with new perspective and fresh eyes
 // Assignment Code
+//Arrays for character selection
+var number = ['0,1,2,3,4,5,6,7,8,9']
+//convert number string into intiger
+if (number) {parseInt}
+var lower = ['a,b,c,d,e,f,g,h,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z']
+var special = ['~,!,@,#,$,%,^,&,*,(,),_,-,+,=']
+var upper = ['A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z']
+var charChoice = []
+
+
+//prompt user to pick character types for password and length of password as well as gens password
+//code used and paraphrased from https://stackoverflow.com/questions/64378165/why-is-my-password-returning-as-undefined for 
+//function generatePassword()
+
+function generatePassword() {
+  //credit to https://stackoverflow.com/questions/64378165/why-is-my-password-returning-as-undefined for help
+  //will prompt user to pick a password length
+  var first = prompt("Choose your password length between 8 and 128 characters")
+  if (!first) {
+    alert("Please add a value to proceed")
+  } else if (first < 8 || first > 128)
+  {"Please pick a number between 8 and 128"}
+  //this will prompt the users for character confirms
+  else {
+    var second = confirm("Press OK to put numbers in your password")
+    var third = confirm('Press OK to put lowercase in your password')
+    var fourth = confirm('Press OK to put uppercase letters in your password')
+    var fifth = confirm('press OK to put special characters in your password')
+    
+  }
+  //this will prompt users to choose at least one option if they haven't choosen one
+  if (!second && !third && !fourth && !fifth) 
+  {alert ("Please choose a character type")}
+}
+console.log(generatePassword)
+
+
+
+
+
+  
+
+
+//AssignmentCode
 var generateBtn = document.querySelector("#generate");
 
-
+// Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -37,15 +81,6 @@ function writePassword() {
 
 }
 
-//prompt user to pick character types for password and length of password
-function generatePassword (){
-    }
-       
-        
-    
-
-
-
-//prompts to generate password
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
