@@ -21,92 +21,74 @@
 //3. we will pass the selected logged selected characters (values) and selected length
 //of the password into a funtion that generates a password (object)
 //4. we will display the password(object) to the user
-//https://www.youtube.com/watch?v=x4HUaiazDes helped me understand how to tackle this problem and write
+// helped me understand how to tackle this problem and write
 //psuedo code
 
-//we made password into a variable so we can plug in to function to output password
+//redo on new branch
+//Assignment Code
 
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
 
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
-
-//we will pass the function gnerate password into the write password fusnction
-//we will output into #password generating our password
-
-//we will pass the function gnerate password into the write password function
-//we will output into #password generating our password
-var generateBtn = document.querySelector("#generate")
-
-return password
-function writePassword(optionsObj = options) {
-    var lower = ["abcdefghijklnmopqrstuvwxyz".split("")]
-    var upper = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")]
-    var nums = ["0123456789".split("")]
-    var special = ["~!@#$%^&*()-_=+".split("")]
-    
-    
-    var userInput = []
-    var charList = []
-    
-    
-    var randomSelection = function (arr) {
-        var random = charList[Math.floor(Math.random() *
-        arr.length)] 
-    
-    if (charList.includes(random)) {
-        return randomSelection(arr)
-    }
-    return randomSelection
-    }
-    
-    //uses arrays for user choice
-    if (optionsObj.lower) {
-        userInput = userInput.concat(lower)
-    }
-    
-    if (optionsObj.upper) {
-        userInput = userInput.concat(upper)
-    }
-    
-    if (optionsObj.nums) {
-        userInput = userInput.concat(nums)
-    }
-    
-    if (optionsObj.special) {
-        userInput = userInput.concat(special)
-    //for loop for amount
-        for ( var i = 8; i < optionsObj.amount; i++) { 
-            var random = randomSelection(charList) }
-            charList.push(random)
-    }
-    generatePassword(charList)
-
-    var passwordText = document.querySelector("#password")
-    var password = passwordText
-    passwordText.value = password
+  passwordText.value = password;
 
 }
 
-function generatePassword () {
-    //confirm messages for characters
-    var addLowercase = confirm("Press OK to add lowercase letters to your password")
-    var addUppercase = confirm("Press OK to add uppercase letters to your password")
-    var addSpecialCharacters = confirm("Press OK to add special characters to your password")
-    var addNumbers = confirm("Press OK to add numbers to your function")
-    //parseInt command converts the string of numbers resulting from our array into object numerical
-    //values
-    //this will generate our password length
-    var passwordLength = prompt("Enter a number between 8 and 128 to choose the length of your password")
-    var parsedAmount = parseInt(passwordLength)
-    //options will pass the users choosen characters and password length into the WritePassword function
-    var options = {
-      lower: addLowercase,
-      upper: addUppercase,
-      special: addSpecialCharacters,
-      nums: addNumbers,
-      amount: parsedAmount
-    }
-    
-    writePassword(options)
+//prompt user to pick character types for password and length of password as well as gens password
+function generatePassword(){
+  //user prompts 
+  var addNumbers = confirm('Click OK to add numbers to your password')
+  var addLower = confirm('Click OK to add lowercase letters to your password')
+  var addUpper = confirm('Click OK to add uppercase letters to your password')
+  var addSpecialChars = confirm('Click OK to add special characters to your password')
+  var passwordLength = prompt("Pick a number between 8 and 128 for your password length")
+
+
+
+//character arrays
+numbers = ['0','1','2','3','4','5','6','7','8','9']
+lower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+upper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+special = ['~','!','@','#','$','%','^','&','*','(',')','_','-','+','=']
+//adds values array "options" based on user prompts
+var options = []
+if (addNumbers) {
+  options = options.concat(numbers)}
+if (addLower) {
+  options = options.concat(lower)
+  }
+if (addUpper) {
+  options = options.concat(upper)
+  }
+if (addSpecialChars) {
+  options = options.concat(special) 
+  } 
+//so that the user must pick a character before proceeding with reference from https://stackoverflow.com/questions/64378165/why-is-my-password-returning-as-undefined
+if (options.length == 0) {
+  alert('Please chose a character to put in your password')
+  }
+//will not generate password if the password length is less than 8 or greater than 128
+ if (passwordLength < 8 || passwordLength > 128){
+  passwordLength = false
+  }
+//a container for our final string
+var random =''
+//loop to calculate password length 
+for(i = 0; i < passwordLength; i++) {
+  var allOptions = Math.floor(Math.random() * options.length)
+  var randomElement = options [allOptions]
+
+  random += (randomElement)
 }
-generateBtn.addEventListener("click", writePassword) 
+//returns our generated password to our function and passes it to write password function which allows user to see password in box
+return random
+}
+//writes password and returns it to writePassword function
+
 // Add event listener to generate button
+generateBtn.addEventListener("click", writePassword)
+//event listener is prompted by the writePassword function sucsesfully running to be put in the password box on our webpage
