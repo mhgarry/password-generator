@@ -24,55 +24,12 @@
 // helped me understand how to tackle this problem and write
 //psuedo code
 
-//redo with new perspective and fresh eyes
+//redo on new branch
+//Assignment Code
+
 // Assignment Code
-//Arrays for character selection
-var number = ['0,1,2,3,4,5,6,7,8,9']
-//convert number string into intiger
-if (number) {parseInt}
-var lower = ['a,b,c,d,e,f,g,h,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z']
-var special = ['~,!,@,#,$,%,^,&,*,(,),_,-,+,=']
-var upper = ['A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z']
-var charChoice = []
-
-
-//prompt user to pick character types for password and length of password as well as gens password
-//code used and paraphrased from https://stackoverflow.com/questions/64378165/why-is-my-password-returning-as-undefined for 
-//function generatePassword()
-
-function generatePassword() {
-  //credit to https://stackoverflow.com/questions/64378165/why-is-my-password-returning-as-undefined for help
-  //will prompt user to pick a password length
-  var first = prompt("Choose your password length between 8 and 128 characters")
-  if (!first) {
-    alert("Please add a value to proceed")
-  } else if (first < 8 || first > 128)
-  {"Please pick a number between 8 and 128"}
-  //this will prompt the users for character confirms
-  else {
-    var second = confirm("Press OK to put numbers in your password")
-    var third = confirm('Press OK to put lowercase in your password')
-    var fourth = confirm('Press OK to put uppercase letters in your password')
-    var fifth = confirm('press OK to put special characters in your password')
-    
-  }
-  //this will prompt users to choose at least one option if they haven't choosen one
-  if (!second && !third && !fourth && !fifth) 
-  {alert ("Please choose a character type")}
-}
-console.log(generatePassword)
-
-
-
-
-
-  
-
-
-//AssignmentCode
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -81,6 +38,57 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+//prompt user to pick character types for password and length of password as well as gens password
+function generatePassword(){
+  //user prompts 
+  var addNumbers = confirm('Click OK to add numbers to your password')
+  var addLower = confirm('Click OK to add lowercase letters to your password')
+  var addUpper = confirm('Click OK to add uppercase letters to your password')
+  var addSpecialChars = confirm('Click OK to add special characters to your password')
+  var passwordLength = prompt("Pick a number between 8 and 128 for your password length")
 
+
+
+//character arrays
+numbers = ['0','1','2','3','4','5','6','7','8','9']
+lower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+upper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+special = ['~','!','@','#','$','%','^','&','*','(',')','_','-','+','=']
+//adds values array "options" based on user prompts
+var options = []
+if (addNumbers) {
+  options = options.concat(numbers)}
+if (addLower) {
+  options = options.concat(lower)
+  }
+if (addUpper) {
+  options = options.concat(upper)
+  }
+if (addSpecialChars) {
+  options = options.concat(special) 
+  } 
+//so that the user must pick a character before proceeding with reference from https://stackoverflow.com/questions/64378165/why-is-my-password-returning-as-undefined
+if (options.length == 0) {
+  alert('Please chose a character to put in your password')
+  }
+//will not generate password if the password length is less than 8 or greater than 128
+ if (passwordLength < 8 || passwordLength > 128){
+  passwordLength = false
+  }
+//a container for our final string
+var random =''
+//loop to calculate password length 
+for(i = 0; i < passwordLength; i++) {
+  var allOptions = Math.floor(Math.random() * options.length)
+  var randomElement = options [allOptions]
+
+  random += (randomElement)
+}
+//returns our generated password to our function and passes it to write password function which allows user to see password in box
+return random
+}
+//writes password and returns it to writePassword function
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword)
+//event listener is prompted by the writePassword function sucsesfully running to be put in the password box on our webpage
