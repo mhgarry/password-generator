@@ -57,6 +57,8 @@ This password generator generates a unique password on button between 8 and 128 
 
 https://www.youtube.com/watch?v=x4HUaiazDes
 https://stackoverflow.com/questions/64378165/why-is-my-password-returning-as-undefined 
+Was helped by my tutor Scott McAnally to make password generator function
+Used help from my instructor JD Tadlock
 
 ## Tests 
 To test this web application click "OK" on any combination of character types. It will generate a password using those character types
